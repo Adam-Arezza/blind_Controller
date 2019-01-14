@@ -23,31 +23,27 @@ radio.setChannel(0x20)
 #open a reading pipe to read from the blinds node
 #open a writing pipe to write to the blinds node
 radio.setDataRate(NRF24.BR_1MBPS)
-radio.setPALevel(NRF24.PA_MIN)
+radio.setPALevel(NRF24.PA_MAX)
 radio.enableDynamicPayloads()
-radio.openReadingPipe(1, nodes[1])
-radio.openWritingPipe(nodes[0])
+radio.openReadingPipe(1, nodes[0])
+radio.openWritingPipe(nodes[1])
 
 #initialized as reader, listening on pipe
-radio.startListening()
 
 message = sys.argv
 command = json.loads(message[1])
 
-def radioAction(direction):
+def radioAction(direction, message):
         #While the script is running, the message from the ndoe is read
         #The incoming message is stored in "message"	
         if radio.available:
                 # radio.read(message, radio.getDynamicPayloadSize())
                 radio.stopListening()
                 radio.write(direction)
-                radio.startListening()
-                return print("Blinds opening")
-        if not radio.available:
-            return print('Blinds could not be reached...')
+                return print("Blinds " + message)
 
 if command['control'] == 'open':
-    radioAction(1)
+    radioAction(1, 'opening')
 
-elif command['control'] == 'closed':
-    radioAction(2)
+elif command['control'] == 'close':
+    radioAction(2, 'closing')

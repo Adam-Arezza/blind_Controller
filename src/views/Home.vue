@@ -28,7 +28,7 @@
     </div>
     <div class="col">
       <b-button
-        v-b-tooltip.hover
+        
         title="Use this button to make the blinds open"
         class="commandBtn"
         variant="primary"
@@ -36,7 +36,7 @@
         @click="blinds('open')"
       >Open</b-button>
       <b-button
-        v-b-tooltip.hover
+        
         title="Use this button to make the blinds close"
         class="commandBtn"
         variant="primary"
