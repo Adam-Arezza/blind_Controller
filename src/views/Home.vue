@@ -1,6 +1,7 @@
 <template>
   <div class="home row no-gutters justify-content-center">
-    <div class="col offset-sm-2">
+    <div class="auto col-sm-8">
+      <p>Set a timer for the blinds to open or close</p>
       <input
         v-b-tooltip.hover
         title="Input the time you want the blinds to open"
@@ -11,9 +12,8 @@
         max="24:00"
         placeholder="00:00"
       >
-      <b-button class="commandBtn" variant="dark" size="md" @click="setTime('open')">Set Open Time</b-button>
-      <br>
-      <br>
+      <b-button class="manBtn" variant="warning" size="md" @click="setTime('open')">Set Open Time</b-button>
+      <p>Open time setting: {{currentTimeOn}}</p>
       <input
         v-b-tooltip.hover.left
         title="Input the time you want the blinds to Close"
@@ -24,23 +24,21 @@
         max="24:00"
         placeholder="00:00"
       >
-      <b-button class="commandBtn" variant="dark" size="md" @click="setTime('close')">Set Close Time</b-button>
+      <b-button class="manBtn" variant="warning" size="md" @click="setTime('close')">Set Close Time</b-button>
+      <p>Close time setting: {{currentTimeOff}}</p>
     </div>
-    <div class="col">
+    <br>
+    <div class="auto col">
       <b-button
-        
-        title="Use this button to make the blinds open"
-        class="commandBtn"
+        class="manBtn"
         variant="primary"
-        size="lg"
+        size="md"
         @click="blinds('open')"
       >Open</b-button>
       <b-button
-        
-        title="Use this button to make the blinds close"
-        class="commandBtn"
+        class="manBtn"
         variant="primary"
-        size="lg"
+        size="md"
         @click="blinds('close')"
       >Close</b-button>
       <br>
@@ -112,14 +110,23 @@ export default {
 #timeSet {
   padding: 5px;
   border-radius: 5px;
-  font-size: 2rem;
-  margin: 19px;
+  font-size: 1.5rem;
+  margin: 15px;
 }
 p {
   font-size: 1.25rem;
+  padding: 10px;
 }
-.commandBtn {
-  margin: 15px;
+.auto {
+  background: rgb(182, 189, 197);
+  border: 1px solid black;
+  padding-top: 20px;
 }
+.manBtn{
+  margin: 5px;
+  border-radius: 0 !important;
+  border: 1px solid black !important;
+}
+
 </style>
 

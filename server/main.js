@@ -55,7 +55,7 @@ app.post('/blinds-auto', function(req,res){
             })
         })
     }
-    res.send("created cron job for blinds to open at: " )
+    res.send("created cron job for blinds to open at: " + request.setTime )
 })
 
 app.listen(3000)
