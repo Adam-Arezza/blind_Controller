@@ -26,12 +26,13 @@ app.post('/blinds-manual', function(req,res){
 })
 
 app.post('/blinds-auto', function(req,res){
+    console.log(req.body)
     var request = req.body
     var time = request.setTime.split(':')
     var min = time[1]
     var hour = time[0]
-    // console.log(request)
-    console.log(min, hour)
+    console.log(request.command)
+    console.log(hour, min)
     if(request.setTime){
         require('crontab').load(function(err,crontab){
             var jobs = crontab.jobs()
